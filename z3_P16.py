@@ -37,13 +37,13 @@ lx42 = z3.Int('lx42')
 
 # List of components. phi-lib
 phi1 = (Y1 == X11 ^ X12)
-phi2 = (Y2 == z3.If(z3.UGE(X21, X22), z3.BitVecVal(0,8), z3.BitVecVal(255,8)))
+phi2 = (Y2 == -z3.If(z3.UGT(X21, X22), z3.BitVecVal(0,8), z3.BitVecVal(1,8)))
 phi3 = (Y3 == X31 & X32)
 phi4 = (Y4 == X41 ^ X42)
 
 # Write the spec
-spec = z3.And(z3.Implies(I < J, O == J),
-       z3.Implies(I > J, O == I))
+spec = z3.And(z3.Implies(z3.UGE(J, I), O == J),
+       z3.Implies(z3.UGT(I,J), O == I))
 
 # phi cons = line number of two different instructions cannot be the same
 phicons = z3.And(ly1!=ly2, ly2!=ly3, ly1!=ly3, ly1!=ly4, ly4!=ly2, ly4!=ly3)
