@@ -37,7 +37,7 @@ lx42 = z3.Int('lx42')
 # List of components. phi-lib
 phi1 = (Y1 == X11 >> 31)
 phi2 = (Y2 == -X21)
-phi3 = (Y3 == X31 >> 31)
+phi3 = (Y3 == (X31 >> 31) & 0x01)
 phi4 = (Y4 == X41 | X42)
 
 # Write the spec
