@@ -1,4 +1,4 @@
-# P16 - Compute max of two integers
+# P16 - Compute max of two integers using I/O examples
 
 import z3
 #from z3 import * considered bad practice but defines namespace z3
@@ -41,9 +41,23 @@ phi2 = (Y2 == -z3.If(z3.UGT(X21, X22), z3.BitVecVal(0,8), z3.BitVecVal(1,8)))
 phi3 = (Y3 == X31 & X32)
 phi4 = (Y4 == X41 ^ X42)
 
-# Write the spec
+
+# Write the spec using I/O examples
 spec = z3.And(z3.Implies(z3.UGE(J, I), O == J),
-       z3.Implies(z3.UGT(I,J), O == I))
+        z3.Implies(z3.UGT(I,J), O == I),
+        z3.Implies(z3.And(I == 25, J == 3), O == I))
+        #z3.Implies(z3.And(I == 22, J == 6), O == I),
+        #z3.Implies(z3.And(I == 42, J == 7), O == I),
+        #z3.Implies(z3.And(I == 2, J == 3), O == J),
+        #z3.Implies(z3.And(I == 26, J == 120), O == J),
+        #z3.Implies(z3.And(I == 2, J == 32), O == J),
+        #z3.Implies(z3.And(I == 1, J == 3), O == J),
+        #z3.Implies(z3.And(I == 14, J == 24), O == J),
+        #z3.Implies(z3.And(I == -3, J == -3), O == -3),
+        #z3.Implies(z3.And(I == 1, J == 0), O == 1),
+        #z3.Implies(z3.And(I == 1, J == 0), O == I),
+        #z3.Implies(z3.And(I == z3.BitVecVal(10,8), J == z3.BitVecVal(3,8)), O == I),
+        #z3.Implies(z3.And(I == z3.BitVecVal(3,8), J == z3.BitVecVal(2,8)), O == I))
 
 # phi cons = line number of two different instructions cannot be the same
 phicons = z3.And(ly1!=ly2, ly2!=ly3, ly1!=ly3, ly1!=ly4, ly4!=ly2, ly4!=ly3)

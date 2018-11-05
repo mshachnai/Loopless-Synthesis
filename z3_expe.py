@@ -50,18 +50,18 @@ phicons = z3.And(ly1!=ly2, ly2!=ly3, ly1!=ly3, ly1!=ly4, ly4!=ly2, ly4!=ly3)
 
 # We only have three instructions.
 # Bound the line number of each instruction and operand.
-phibound = z3.And(ly1 >=2 , ly1 <=5,
-                ly2 >=2, ly2 <=5,
-                ly3 >=2, ly3 <=5,
-                ly4 >=2, ly4 <=5,
-                lx11 >=0, lx11 <=5,
-                lx12 >=0, lx12 <=5,
-                lx21 >=0, lx21 <=5,
-                lx22 >=0, lx22 <=5,
-                lx31 >=0, lx31 <=5,
-                lx32 >=0, lx32 <=5,
-                lx41 >=0, lx41 <=5,
-                lx42 >=0, lx42 <=5)
+phibound = z3.And(ly1 >=1 , ly1 <=4,
+                ly2 >=1, ly2 <=4,
+                ly3 >=1, ly3 <=4,
+                ly4 >=1, ly4 <=4,
+                lx11 >=-1, lx11 <=4,
+                lx12 >=-1, lx12 <=4,
+                lx21 >=-1, lx21 <=4,
+                lx22 >=-1, lx22 <=4,
+                lx31 >=-1, lx31 <=4,
+                lx32 >=-1, lx32 <=4,
+                lx41 >=-1, lx41 <=4,
+                lx42 >=-1, lx42 <=4)
 
 
 # The operands of an instruction should use variables from previous lines. acyclicity
@@ -79,18 +79,18 @@ phiconn = z3.And(z3.Implies(lx11 == 0, X11 == I),
               z3.Implies(lx32 == 0, X32 == I),
               z3.Implies(lx41 == 0, X41 == I),
               z3.Implies(lx42 == 0, X42 == I),
-              z3.Implies(lx11 == 1, X11 == J),
-              z3.Implies(lx12 == 1, X12 == J),
-              z3.Implies(lx21 == 1, X21 == J),
-              z3.Implies(lx22 == 1, X22 == J),
-              z3.Implies(lx31 == 1, X31 == J),
-              z3.Implies(lx32 == 1, X32 == J),
-              z3.Implies(lx41 == 1, X41 == J),
-              z3.Implies(lx42 == 1, X42 == J),
-              z3.Implies(ly1 == 5,Y1 == O),
-              z3.Implies(ly2 == 5,Y2 == O),
-              z3.Implies(ly3 == 5,Y3 == O),
-              z3.Implies(ly4 == 5,Y4 == O))
+              z3.Implies(lx11 == -1, X11 == J),
+              z3.Implies(lx12 == -1, X12 == J),
+              z3.Implies(lx21 == -1, X21 == J),
+              z3.Implies(lx22 == -1, X22 == J),
+              z3.Implies(lx31 == -1, X31 == J),
+              z3.Implies(lx32 == -1, X32 == J),
+              z3.Implies(lx41 == -1, X41 == J),
+              z3.Implies(lx42 == -1, X42 == J),
+              z3.Implies(ly1 == 4,Y1 == O),
+              z3.Implies(ly2 == 4,Y2 == O),
+              z3.Implies(ly3 == 4,Y3 == O),
+              z3.Implies(ly4 == 4,Y4 == O))
 
 lys = [ly1, ly2, ly3, ly4]
 lxs = [lx11, lx12, lx21, lx22, lx31, lx32, lx41, lx42]
