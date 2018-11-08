@@ -30,15 +30,15 @@ phi2 = (Y2 == X21 & X22)
 #Y2 = I & Y1
 #O = I & (I-1)
 
-# Write the spec in terms of I/O examples
-spec = z3.And(#z3.Implies(I == z3.BitVecVal(3,8), O == z3.BitVecVal(2,8)), -- this example doesn't work by itself.
+# Write the spec in terms of I/O examples 
+spec = z3.And(#z3.Implies(I == z3.BitVecVal(3,8), O == z3.BitVecVal(2,8)), -- 
               z3.Implies(I == z3.BitVecVal(2,8), O == z3.BitVecVal(0,8)))
               #z3.Implies(I == z3.BitVecVal(-2,8), O == z3.BitVecVal(-4,8)))
               #z3.Implies(I == z3.BitVecVal(1,8), O == z3.BitVecVal(0,8)),
               #z3.Implies(I == z3.BitVecVal(0,8), O == z3.BitVecVal(0,8)),
               #z3.Implies(I == z3.BitVecVal(5,8), O == z3.BitVecVal(4,8)))
 
-
+# One example is enough to get a correct result, but not necessarily the wanted spec. No example makes this unsat/unknown. 
 
 
 # phi cons = line number of two different instructions cannot be the same
