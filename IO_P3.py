@@ -40,7 +40,7 @@ phi3 = (Y3 == -X31)
 spec = z3.And(#z3.Implies(I == z3.BitVecVal(3,8), O == z3.BitVecVal(1,8)))
               #z3.Implies(I == z3.BitVecVal(5,8), O == z3.BitVecVal(1,8)))
               #z3.Implies(I == z3.BitVecVal(-3,8), O == z3.BitVecVal(1,8)))
-              #z3.Implies(I == -128, O == -128), -- this example doesn't work by itself
+              #z3.Implies(I == -128, O == -128), -- gives a correct result, but not the desired spec
               z3.Implies(I == -3, O == 1))
               #z3.Implies(I == z3.BitVecVal(127,8), O == z3.BitVecVal(1,8)))
               #z3.Implies(I == z3.BitVecVal(-128,8), O == z3.BitVecVal(0,8)))
