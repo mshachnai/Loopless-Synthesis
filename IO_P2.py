@@ -25,11 +25,6 @@ lx22 = z3.Int('lx22')
 phi1 = (Y1 == (X11 + 1))
 phi2 = (Y2 == X21 & X22)
 
-
-#Y1 = I-1
-#Y2 = I & Y1
-#O = I & (I-1)
-
 # Write the spec using I/O examples
 spec = z3.And(z3.Implies(I == z3.BitVecVal(11, 8), O == z3.BitVecVal(8, 8))
         #     z3.Implies(I == z3.BitVecVal(43, 8), O == z3.BitVecVal(40, 8)),
