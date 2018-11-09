@@ -27,7 +27,14 @@ phi2 = (Y2 == X21 | X22)
 
 
 # Write the spec using I/O examples
-spec = z3.And(z3.Implies(I == 10, O == 11))
+spec = z3.And(z3.Implies(I == 12, O == 15),
+              z3.Implies(I == 2 , O == 3),
+              z3.Implies(I == 0 , O == -1),
+              z3.Implies(I == 1 , O == 1),
+              z3.Implies(I == 4 , O == 7),
+              z3.Implies(I == 8 , O == 15),
+              z3.Implies(I == 15 , O == 15),
+              z3.Implies(I ==-128 , O == -1))
 
 # phi cons = line number of two different instructions cannot be the same
 phicons = z3.And(ly1 != ly2)#, ly2!=ly3, ly1!=ly3)
@@ -36,7 +43,6 @@ phicons = z3.And(ly1 != ly2)#, ly2!=ly3, ly1!=ly3)
 # Bound the line number of each instruction and operand.
 phibound = z3.And(ly1 >=1 , ly1 <=2 ,
                 ly2 >=1 , ly2 <= 2,
-                #ly3 >=1 , ly3 <= 2,
                 lx11 >=0, lx11 <=2,
                 lx21 >=0, lx21 <=2,
                 lx22 >=0, lx22 <=2)
@@ -48,7 +54,6 @@ phidep = z3.And(lx11 < ly1 , lx21 < ly2, lx22 < ly2)
 # First, the simple ones: if lx == 0, then x gets info from I
 #                         if ly == 3, then O is y
 phiconn = z3.And(z3.Implies(lx11 == 0, X11 == I),
-        #z3.Implies(lx12 == 0, X12 == I),
               z3.Implies(lx21 == 0, X21 == I),
               z3.Implies(lx22 == 0, X22 == I),
               z3.Implies(ly1 == 2,Y1 == O),
